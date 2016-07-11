@@ -1,5 +1,8 @@
 # Japanese Translation Patch for WPamA 1.0.1
 
+## アドオンサイト
+http://www.esoui.com/downloads/info1190-WPamAWhatPledgesatmyAlts.html
+
 ## 新機能
 - 新しいモード "その他" は、キャラクター毎の金/銀/銅の鍵、解錠、完全・空の魂石の情報です。
 
