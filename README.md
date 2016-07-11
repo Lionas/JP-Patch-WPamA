@@ -22,16 +22,16 @@
 - "停止"ボタンをクリックすると、AutoInviteが停止し、設定が復元されます。
 
 ## Multiple languages support
-EN fully supported;
-DE fully supported;
-FR partially supported- need help with translation some texts;
-RU fully supported for RuESO 9.3;
-Other languages - if you dare to care with the translation. 
+- EN fully supported;
+- DE fully supported;
+- FR partially supported- need help with translation some texts;
+- RU fully supported for RuESO 9.3;
+- Other languages - if you dare to care with the translation. 
 
 ## Special thanks
-OlegS for alpha/beta-testing and debugging as well as co-authoring of the several features
-Baertram for help with German translation
-Svan, Nita for help with French translation
+- OlegS for alpha/beta-testing and debugging as well as co-authoring of the several features
+- Baertram for help with German translation
+- Svan, Nita for help with French translation
 
 ## メモ
 インターフェースウィンドウの略語のMSL(最小スケールレベル)は、ダンジョンをスケールすることができる最小のレベルを意味します。
