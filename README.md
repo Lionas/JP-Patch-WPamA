@@ -12,46 +12,47 @@
 - アドオンウィンドウのオンオフ、または、チャットへのメッセージの投稿は、キーバインディングまたはスラッシュコマンドを使用します。
 
 ## RGLA(Raid Group Leader Assistant：レイドグループリーダーアシスタント)
-**注意! この機能を利用するには AutoInvite アドオンが必要です!**
+**注意! この機能を利用するには AutoInvite（自動招待）アドオンが必要です!**
 
-ロスガーワールドボスデイリークエストを持っている場合、RGLAはグループを集めるために便利でしょう。
-"開始"ボタンをクリックすると
+- ロスガーワールドボスデイリークエストを持っている場合、RGLAはグループを集めるために便利でしょう。
+- "開始"ボタンをクリックすると、アドオンはAutoInviteの適切なクエストの設定を行い自動招待機能がONになります。
+- 手動で招待文字列を設定する必要はありません。また、AutoInviteの以前の設定は保持されます。
+- 新しいプレイヤーが加入した後はクエストが自動的にシェアされます。
+- チャットに予め定義されたメッセージ（メンバー募集中、他）を選んで、"投稿"ボタンをクリックすると投稿します。
+- "停止"ボタンをクリックすると、AutoInviteが停止し、設定が復元されます。
 
-When you click the "Start" button, the addon will set the appropriate quest settings in AutoInvite and turn it on.
-You don't need to manually set the invite string. Also saves previous configuration of AutoInvite.
-After a new player joins the group quest shared automatically.
-Click the "Post" button for select and post predefined (LFM and others) message to chat.
-When you click the "Stop" button AutoInvite will be stopped and its settings will be restored.
-
-Multiple languages support
+## Multiple languages support
 EN fully supported;
 DE fully supported;
 FR partially supported- need help with translation some texts;
 RU fully supported for RuESO 9.3;
 Other languages - if you dare to care with the translation. 
 
-Special thanks
+## Special thanks
 OlegS for alpha/beta-testing and debugging as well as co-authoring of the several features
 Baertram for help with German translation
 Svan, Nita for help with French translation
 
-Note
-An abbreviation MSL (Min Scaled Level) in interface window means "The minimum level which can be scaled dungeon".
+## メモ
+インターフェースウィンドウの略語のMSL(最小スケールレベル)は、ダンジョンをスケールすることができる最小のレベルを意味します。
 
-About "Done" and "N/A" statuses
-To determine the status "Done" addon remembers time stamp the taking of a pledge and time stamp closing of a pledge. If both the time stamp is between today 7:00 to 7:00 tomorrow then the status "None" is changed to "Done" (if current time < 7:00 then checks between yesterday 7:00 to 7:00 today). Both the time stamp stored in the saved variables.
+## "完了" と "無効(N/A)" の状態
+"完了"状態を決定するために、アドオンは誓いを取得した時間と誓いを閉じた時間を記録します。
+両方の時間が今日の7:00から明日の7:00までの間だった場合、"なし"が"完了"に変更されます。
+（もし時間が今日の7:00以前だった場合、昨日の7:00から今日の7:00までの間としてチェックします）
+両方の時間は変数に保存されます。
 
-There are several cases when the status "Done" may not be displayed:
-1. If you had a crashing game. Saved variables are not preserved in the file;
-2. You used the option "reset characters" (/wpa resetchar);
-3. You changed the interface language;
-4. If you took a pledge on the same computer and closed it to another. This is true if you play on multiple computers, for example you have a computer and a laptop.
+いくつかのケースでは、"完了"が表示されないことがあります：
+1. ゲームがクラッシュした場合。変数がファイルに保存されません
+2. "キャラクターをリセット"オプションを利用した(/wpa resetchar)
+3. インタフェース言語を変更した
+4. 同じコンピュータで誓いを取得し、別のものでクローズした場合。複数のコンピュータでプレイしたした場合などで、例えばデスクトップPCとノートPCのようなケースです。
 
-The status "N/A" replaces the status of "None" in the following cases:
-- Gold pledge and non veteran character;
-- Silver pledge and character with a level lower than 45.
+”無効"ステータスは以下のケースの場合は"なし"に置き換えられます:
+- 金の誓いと非ベテランキャラクター
+- 銀の誓いとレベル45未満キャラクター
 
-List of Slash Command
+## List of Slash Command
 /wpa - Show/hide addon window
 /wpa on - Show addon window (alias /wpa show)
 /wpa off - Hide addon window (alias /wpa hide)
