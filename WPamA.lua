@@ -1,4 +1,4 @@
--- Initialization of variables
+﻿-- Initialization of variables
 WPamA.Today = {}
 WPamA.OldShowMode = 9
 WPamA.SI_TOOLTIP_ITEM_NAME = GetString(SI_TOOLTIP_ITEM_NAME)
@@ -36,18 +36,39 @@ function WPamA:TimestampToStr(tmst)
     return date .. " " .. time
   end
   local dd, mm, yy, n, s = "", "", "", 0, ""
-  for i=1,string.len(date) do
-    s = string.sub(date, i , i)
-    if s == "/" or s == "."  then
-      n = n + 1
-    elseif n == 0 then
-      mm = mm .. s
-    elseif n == 1 then
-      dd = dd .. s
-    elseif n == 2 then
-      yy = yy .. s
-    end 
+
+  -- For JP Client
+  if self.JP.lang == "JP" then
+
+    for i=1,string.len(date) do
+      s = string.sub(date, i , i)
+      if type(tonumber(s)) ~= "number" then
+        n = n + 1
+      elseif n == 0 then
+        yy = yy .. s
+      elseif n == 3 then
+        mm = mm .. s
+      elseif n == 6 then
+        dd = dd .. s
+      end 
+    end
+
+  else
+
+    for i=1,string.len(date) do
+      s = string.sub(date, i , i)
+      if s == "/" or s == "."  then
+        n = n + 1
+      elseif n == 0 then
+        mm = mm .. s
+      elseif n == 1 then
+        dd = dd .. s
+      elseif n == 2 then
+        yy = yy .. s
+      end 
+    end
   end
+
   if string.len(mm) == 1 then
       mm = "0" .. mm
   end
@@ -55,7 +76,14 @@ function WPamA:TimestampToStr(tmst)
       dd = "0" .. dd
   end
   if self.Consts.DateTimeFrmt == 1 then
-    return yy .. "-" .. mm .. "-" .. dd .. " " .. string.sub(time, 1 , 5)
+
+    -- For JP Client
+    if self.JP.lang == "JP" then
+      return mm .. "/" .. dd .. "(" .. self.JP.DayOfWeek[self.Today.W] .. ") " .. string.sub(time, 1 , 5)
+    else
+      return yy .. "-" .. mm .. "-" .. dd .. " " .. string.sub(time, 1 , 5)
+    end
+
   elseif self.Consts.DateTimeFrmt == 3 then
     return dd .. "." .. mm .. "." .. string.sub(yy, 3 , 2)
   end
@@ -255,6 +283,41 @@ function WPamA:PostToChatRGLA(var)
   CHAT_SYSTEM:StartTextEntry(txt) 
 end
 
+-- For JP Client
+function WPamA:PostToChatRGLAJp(var)
+  local n = self.CurChar.WrBoss[0]
+  local b = self.Consts.DailyBoss[n]
+  local e = self.JP.RGLA
+  local f = self.savedVars.AutoShare
+  local txt = ""
+  if var == 1 then
+    txt = e.C1 .. b.H .. e.C2 .. b.S[1]
+    for i = 2, #b.S do
+      if i == #b.S then txt = txt .. e.D2 .. b.S[i] else  txt = txt .. e.D1 .. b.S[i] end
+    end
+    txt = txt .. e.C3
+    if f then txt = txt .. e.C4 end
+    txt = txt .. " (" .. self.Name .. ")."
+  elseif var == 2 then
+    txt = e.C1 .. e.C0 .. b.S[1] .. e.C5
+    if f then txt = txt .. e.C6 end
+  elseif var == 3 then
+    txt = e.CZ .. b.H .. e.C7 
+  elseif var == 4 then
+    txt = e.CP .. b.H .. e.C7 
+  elseif var == 5 then
+    txt = e.CP .. e.C8
+  elseif var == 6 then
+    txt = e.CZ .. b.H .. e.C9
+  elseif var == 7 then
+    txt = e.CP .. e.Q1
+  else
+    txt = e.A1 .. self.Name .. " v" .. self.Version .. e.A2
+  end
+  --msg(txt)
+  CHAT_SYSTEM:StartTextEntry(txt) 
+end
+
 function WPamA:CheckDungNum(num)
   if num == nil or num <= 1 then
     return 1
@@ -386,7 +449,21 @@ end
 
 function WPamA:PostToChatTd()
   self:UpdToday()
+
+  -- For JP Client
+  if self.JP.lang == "JP" then
+    txt = self:BuildInfoStringJP()
+  else
+    txt = self:BuildInfoStringEN()
+  end
+
+  CHAT_SYSTEM:StartTextEntry(txt)
+end
+
+function WPamA:BuildInfoStringEN()
+
   local Chat = self.EN.Chat
+
 -- Date
   local txt =  Chat.Td1
   if self.EN.DayOfWeek ~= nil then
@@ -404,7 +481,33 @@ function WPamA:PostToChatTd()
   end
 -- Addon name, version
   txt = txt .. Chat.Use1 .. self.Name .. " v" .. self.Version .. Chat.Use2
-  CHAT_SYSTEM:StartTextEntry(txt)
+
+  return txt
+end
+
+-- For JP Client
+function WPamA:BuildInfoStringJP()
+
+  local Chat = self.JP.Chat
+
+-- Date
+  local txt =  Chat.Td1 .. self:TimestampToStr(self.Today.TS) .. Chat.Td2
+
+-- Silver
+  local q = self:GetSilverDungNum(self.Today.Diff)
+  txt = txt .. Chat.Silver .. self.JP.DungeonsName[q] .. " [Lv" .. self.Consts.Dungeons[q].Lvl .. "]"
+
+-- Gold
+  q = self:GetGoldDungNum(self.Today.Diff)
+  txt = txt .. Chat.Gold .. self.JP.DungeonsName[q]
+  if self.Consts.LootGold ~= nil and self.Consts.LootGold[q] ~= nil and self.Consts.LootGold[q] ~= "" then
+    txt = txt .. Chat.Loot1 .. self.Consts.LootGold[q] .. Chat.Loot2
+  end
+
+-- Addon name, version
+  txt = txt .. Chat.Use1 .. self.Name .. " v" .. self.Version .. Chat.Use2
+
+  return txt
 end
 
 function WPamA:UpdClndWindowInfo()
@@ -1162,8 +1265,15 @@ function WPamA.OnRGLAStartClick()
 end 
 
 function WPamA.OnRGLAMsgClick(var)
-  if var >= 7 or WPamA.RGLA_Started or (var == 6 and WPamA:GetCurrentWrBoss() ~= 0 and WPamA:IsWrothgarLocation()) then
-    WPamA:PostToChatRGLA(var)
+  if var >= 7 or WPamA.RGLA_Started or (var == 6 and WPamA:GetCurrentWrBoss() ~= 0 and WPamA:IsWrothgarLocation()) then 
+
+    -- For JP Client
+    if WPamA.JP == nil then
+      WPamA:PostToChatRGLA(var)
+    else
+      WPamA:PostToChatRGLAJp(var)
+    end
+
     WPamA_RGLA_Msg:SetHidden(true)
   end
 end

@@ -1,4 +1,4 @@
-WPamA.i18n = {
+﻿WPamA.i18n = {
 -- Marker (substring) in quest name for detect Veteran Pledge
   VeteranM = "ベテラン",
 -- Marker (substring) in active quest step text for detect DONE stage
@@ -35,8 +35,8 @@ WPamA.i18n = {
   HdrName = "名前",
   HdrClnd = "カレンダー",
   HdrMSL = "MSL",
-  HdrSilver = "ノーマル / 銀",
-  HdrGold = "ベテラン / 金",
+  HdrSilver = "ノーマル / シルバー",
+  HdrGold = "ベテラン / ゴールド",
   OptLocation = "ダンジョン名の代わりに地名",
   OptENDungeon = "ダンジョン名を英語で表示",
   OptDontShowNone = "\"なし\"の代わりに空白を表示",
@@ -98,13 +98,13 @@ WPamA.i18n.ToolTip = {
   [27] = "Achievement countdown",
 }
 WPamA.i18n.RGLAMsg = {
-  [1] = "Z: LFM ...",
-  [2] = "Z: LFM short",
-  [3] = "Z: Start after 1 min",
-  [4] = "G: Start after 1 min",
-  [5] = "G: Start",
-  [6] = "Z: Boss is down",
-  [7] = "G: You already done it",
+  [1] = "ゾーン: メンバーを探す ...",
+  [2] = "Z: メンバーを探す（短縮）",
+  [3] = "Z: 1分後に開始",
+  [4] = "G: 1分後に開始",
+  [5] = "G: 開始",
+  [6] = "Z: ボスが倒された",
+  [7] = "グループ: 既に行っている",
   [8] = "アドオンについて",
 }
 -- In Dungeons structure:
@@ -122,12 +122,12 @@ WPamA.i18n.Dungeons = {
   },
 -- First location dungeons
   [3] = { -- AD, Auridon, Banished Cells
-    Mark = "Banished",
-    Name = "Banished Cells",
+    Mark = "追放者",
+    Name = "追放者の監房",
   },
   [4] = { -- EP, Stonefalls, Fungal Grotto
-    Mark = "Fungal",
-    Name = "Fungal Grotto",
+    Mark = "フンガル",
+    Name = "フンガル洞窟",
   },
   [5] = { -- DC, Glenumbra, Spindleclutch
     Mark = "スピンドル",
@@ -135,60 +135,60 @@ WPamA.i18n.Dungeons = {
   },
 -- Second location dungeons
   [6] = { -- AD, Grahtwood, Elden Hollow
-    Mark = "Elden",
-    Name = "Elden Hollow",
+    Mark = "エルデン",
+    Name = "エルデン洞穴",
   },
   [7] = { -- EP, Deshaan, Darkshade Caverns
-    Mark = "Darkshade",
-    Name = "Darkshade Caverns",
+    Mark = "ダークシェード",
+    Name = "ダークシェード洞穴",
   },
   [8] = { -- DC, Stormhaven, Wayrest Sewers
     Mark = "ウェイレスト",
-    Name = "ウェイレスト Sewers",
+    Name = "ウェイレスト下水道",
   },
 -- 3 location dungeons
   [9] = { -- AD, Greenshade, City of Ash
-    Mark = "Ash",
-    Name = "City of Ash",
+    Mark = "灰",
+    Name = "灰の街",
   },
   [10] = { -- EP, Shadowfen, Arx Corinium
-    Mark = "Arx",
-    Name = "Arx Corinium",
+    Mark = "アークス",
+    Name = "アークス・コリニウム",
   },
   [11] = { -- DC, Rivenspire, Crypt of Hearts
-    Mark = "Crypt",
-    Name = "Crypt of Hearts",
+    Mark = "墓地",
+    Name = "ハーツ墓地",
   },
 -- 4 location dungeons
   [12] = { -- AD, Malabal Tor, Tempest Island
-    Mark = "Island",
-    Name = "Tempest Island",
+    Mark = "テンペスト",
+    Name = "テンペスト島",
   },
   [13] = { -- EP, Eastmarch, Direfrost Keep
-    Mark = "Direfrost",
-    Name = "Direfrost Keep",
+    Mark = "ダイアフロスト",
+    Name = "ダイアフロスト砦",
   },
   [14] = { -- DC, Alik`r Desert, Volenfell
-    Mark = "Volenfell",
-    Name = "Volenfell",
+    Mark = "ヴォレンフェル",
+    Name = "ヴォレンフェル",
   },
 -- 5 location dungeons
   [15] = { -- AD, Reaper`s March, Selene`s Web
-    Mark = "Selene",
-    Name = "Selene`s Web",
+    Mark = "セレーン",
+    Name = "セレーンの巣",
   },
   [16] = { -- EP, The Rift, Blessed Crucible
-    Mark = "Crucible",
-    Name = "Blessed Crucible",
+    Mark = "るつぼ",
+    Name = "聖なるるつぼ",
   },
   [17] = { -- DC, Bangkorai, Blackheart Haven 
-    Mark = "Haven",
-    Name = "Blackheart Haven",
+    Mark = "ヘブン",
+    Name = "ブラックハートヘブン",
   },
 -- 6 location dungeons
   [18] = { -- Any, Coldharbour, Vaults of Madness
-    Mark = "Madness",
-    Name = "Vaults of Madness",
+    Mark = "狂気",
+    Name = "狂気の地下室",
   },
 -- 7 location dungeons
   [19] = { -- Any, Imperial City, IC Prison
@@ -196,8 +196,8 @@ WPamA.i18n.Dungeons = {
     Name = "帝国監獄",
   },
   [20] = { -- Any, Imperial City, WG Tower
-    Mark = "タワー",
-    Name = "WG Tower",
+    Mark = "塔",
+    Name = "白金の塔",
   },
 }
 WPamA.i18n.DailyBossQ = {
@@ -217,18 +217,19 @@ WPamA.i18n.DayOfWeek = {
   [5] = "金",
   [6] = "土",
 }
--- The message in chat should always be English. This part should be only in English localization.
-WPamA.EN = {
+-- The message in chat should always be Japanese. This part should be only in Japanese localization.
+WPamA.JP = {
+  lang = "JP",
 -- Chat
   Chat = {
-    Td1 = "Today Pledges: (from ",
-    Td2 = "): ",
-    Silver = "Silver - ",
-    Gold = "; Gold - ",
-    Loot1 = " (can loot ",
-    Loot2 = " )",
-    Use1 = " (Used: ",
-    Use2 = ")",
+    Td1 = "今日の誓い[",
+    Td2 = "より]: ",
+    Silver = "シルバー : ",
+    Gold = ", ゴールド : ",
+    Loot1 = "(",
+    Loot2 = "が窃取可能)",
+    Use1 = " (",
+    Use2 = "を利用)",
   },
   RGLA = {
     CZ = "/z ",
@@ -254,9 +255,52 @@ WPamA.EN = {
   DungeonsName = {},
 }
 for i=0,6 do
-  WPamA.EN.DayOfWeek[i] = WPamA.i18n.DayOfWeek[i]
+  WPamA.JP.DayOfWeek[i] = WPamA.i18n.DayOfWeek[i]
 end
 for n, v in pairs(WPamA.i18n.Dungeons) do
-  WPamA.EN.DungeonsName[n] = v.Name
+  WPamA.JP.DungeonsName[n] = v.Name
 end
 
+WPamA.Consts.DailyBoss = {
+  [1] = {
+    H = "UD",--ZANDA
+    S = {
+      [1] = "+ud",
+      [2] = "+zanda",
+      [3] = "+zan",
+      [4] = "+dolmen",
+    },
+  },
+  [2] = {
+    H = "NYZ",
+    S = {
+      [1] = "+nyz",
+    },
+  },
+  [3] = {
+    H = "EDU",
+    S = {
+      [1] = "+edu",
+    },
+  },
+  [4] = {
+    H = "MAD",--OGRE
+    S = {
+      [1] = "+mad",
+      [2] = "+ogre",
+    },
+  },
+  [5] = {
+    H = "POA",
+    S = {
+      [1] = "+poa",
+    },
+  },
+  [6] = {
+    H = "NB",--CORI
+    S = {
+      [1] = "+nb",
+      [2] = "+cori",
+    },
+  },
+}
