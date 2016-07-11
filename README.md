@@ -1,12 +1,12 @@
 # Japanese Translation Patch for WPamA 1.0.1
 
 ## 新機能
-- 新しいモード "その他" は、キャラクター毎の金/銀/銅の鍵、ロックピック、完全・空の魂石の情報です。
+- 新しいモード "その他" は、キャラクター毎の金/銀/銅の鍵、解錠、完全・空の魂石の情報です。
 
 ## 概要
 - このアドオンは誓いについてのカレンダーを表示し、今日の誓いをチャットメッセージに投稿します。
 - またキャラクター毎に取得した誓いや、6つのロスガーワールドボスの状態（完了・進行中・なし）を表示します。
-- ダンジョン名の代わりに場所の名前を表示することができます。
+- ダンジョン名の代わりに地名を表示することができます。
 - 非ベテランメンバーにはスケールされたダンジョンの最低レベルを表示します。
 - 誓いのステージが "...に戻る" や "〜と話す" になると、チェックマークが表示されます。
 - アドオンウィンドウのオンオフ、または、チャットへのメッセージの投稿は、キーバインディングまたはスラッシュコマンドを使用します。
@@ -53,25 +53,25 @@ Svan, Nita for help with French translation
 - 銀の誓いとレベル45未満キャラクター
 
 ## List of Slash Command
-/wpa - Show/hide addon window
-/wpa on - Show addon window (alias /wpa show)
-/wpa off - Hide addon window (alias /wpa hide)
-/wpa td - Post to chat message about today's pledges(alias /wpa today)
-/wpa r - Reload quests information for curent character (alias /wpa refresh)
-/wpa rch - Delete information for all characters and load for curent (alias /wpa resetchar) 
-/wpa n - Switch to display dungeons names (alias /wpa name)
-/wpa l - Switch to display locations names (alias /wpa location)
-/wpa ch - Switch to character window (alias /wpa char)
-/wpa cl - Switch to calendar window (alias /wpa calendar)
+- /wpa - アドオンウィンドウの表示/非表示
+- /wpa on - アドオンウィンドウの表示（/wpa showのエイリアス）
+- /wpa off - アドオンウィンドウの非表示（/wap hideのエイリアス）
+- /wpa td - 今日の誓いに関するメッセージをチャットに投稿する（/wpa todayのエイリアス）
+- /wpa r - 現在のキャラクターのクエスト情報を更新する（/wpa refreshのエイリアス）
+- /wpa rch - 全キャラクターの情報を削除し、現在のものを読み込む（/wpa resetcharのエイリアス）
+- /wpa n - ダンジョン名の表示に切り替える（/wpa nameのエイリアス）
+- /wpa l - 地名の表示に切り替える（/wpa locationのエイリアス）
+- /wpa ch - キャラクターウィンドウに切り替える(/wpa charのエイリアス）
+- /wpa cl - カレンダーウィンドウに切り替える（/wpa calendarのエイリアス）
 
-/wpa dbgon - Enable debug mode
-/wpa dbgoff - Disable debug mode
-/wpa dbgclr - Clear debug buffer in SavedVariables
-/wpa qdump - Dumping all taken quests to debug buffer
+- /wpa dbgon - デバッグモードを有効にする
+- /wpa dbgoff - デバッグモードを無効にする
+- /wpa dbgclr - 保存している変数のデバッグバッファをクリアする
+- /wpa qdump - 全取得済みクエストをデバッグバッファにダンプする
 
-/rgla - Show/hide RGLA window
-/rgla on - Show RGLA window (alias /rgla show)
-/rgla off - Hide RGLA window (alias /rgla hide)
-/rgla s - Start RGLA(alias /rgla start)
-/rgla t - Stop RGLA(alias /rgla stop)
-/rgla p - Post to chat "LFM .." message(alias /rgla post)
+- /rgla - RGLAウィンドウの表示/非表示
+- /rgla on - RGLAウィンドウの表示（/rgla showのエイリアス）
+- /rgla off - RGLAウィンドウの非表示(/rgla hideのエイリアス）
+- /rgla s - RGLAを開始する（/rgla startのエイリアス）
+- /rgla t - RGLAを停止する(/rgla stopのエイリアス）
+- /rgla p - メンバー募集中メッセージをチャットに投稿する（/rgla postのエイリアス）
