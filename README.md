@@ -15,6 +15,7 @@
 **注意! この機能を利用するには AutoInvite アドオンが必要です!**
 
 ロスガーワールドボスデイリークエストを持っている場合、RGLAはグループを集めるために便利でしょう。
+"開始"ボタンをクリックすると
 
 When you click the "Start" button, the addon will set the appropriate quest settings in AutoInvite and turn it on.
 You don't need to manually set the invite string. Also saves previous configuration of AutoInvite.
