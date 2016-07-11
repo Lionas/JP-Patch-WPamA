@@ -12,8 +12,10 @@
 - アドオンウィンドウのオンオフ、または、チャットへのメッセージの投稿は、キーバインディングまたはスラッシュコマンドを使用します。
 
 ## RGLA(Raid Group Leader Assistant：レイドグループリーダーアシスタント)
-**Attention! To use this feature you must have the addon AutoInvite!**
-If you have daily quest for Wrothgar World Bosses, RGLA will help you gather a group.
+**注意! この機能を利用するには AutoInvite アドオンが必要です!**
+
+ロスガーワールドボスデイリークエストを持っている場合、RGLAはグループを集めるために便利でしょう。
+
 When you click the "Start" button, the addon will set the appropriate quest settings in AutoInvite and turn it on.
 You don't need to manually set the invite string. Also saves previous configuration of AutoInvite.
 After a new player joins the group quest shared automatically.
