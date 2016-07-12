@@ -23,6 +23,8 @@ function WPamA:UpdToday()
   self.Today.W = (self.Consts.BaseDayOfWeek + self.Today.Diff) % 7
 end
 
+
+
 function WPamA:ChekToday(DTS)
   if DTS ~= nil and DTS >= self.Today.TS and DTS < (self.Today.TS + self.Consts.SecInDay) then
     return true
@@ -79,7 +81,7 @@ function WPamA:TimestampToStr(tmst)
 
     -- For JP Client
     if self.i18n.lang == "JP" then
-      return mm .. "/" .. dd .. "(" .. self.JP.DayOfWeek[self.Today.W] .. ") " .. string.sub(time, 1 , 5)
+      return mm .. "/" .. dd .. " " .. string.sub(time, 1 , 5)
     else
       return yy .. "-" .. mm .. "-" .. dd .. " " .. string.sub(time, 1 , 5)
     end
@@ -508,7 +510,7 @@ function WPamA:BuildInfoStringJP()
   local Chat = self.JP.Chat
 
 -- Date
-  local txt =  Chat.Td1 .. self:TimestampToStr(self.Today.TS) .. Chat.Td2
+  local txt =  Chat.Td1 .. self:TimestampToStr(self.Today.TS) .. "(" .. self.i18n.DayOfWeek[self.Today.W] .. ")" .. Chat.Td2
 
 -- Silver
   local q = self:GetSilverDungNum(self.Today.Diff)
@@ -1286,9 +1288,9 @@ function WPamA.OnRGLAMsgClick(var)
 
     -- For JP Client
     if WPamA.i18n.lang == "JP" then
-      WPamA:PostToChatRGLA(var)
-    else
       WPamA:PostToChatRGLAJp(var)
+    else
+      WPamA:PostToChatRGLA(var)
     end
 
     WPamA_RGLA_Msg:SetHidden(true)
@@ -1419,7 +1421,7 @@ function WPamA.OnChatMessage(eventCode, channelType, fromName, messageText, isCu
         end
         
         if WPamA.i18n.lang == "JP" then
-        	msg(zo_strformat(WPamA.i18n.SendInvTo, nam)
+        	msg(zo_strformat(WPamA.i18n.SendInvTo, nam))
         else
 	        msg(WPamA.i18n.SendInvTo .. nam)
 	    end
