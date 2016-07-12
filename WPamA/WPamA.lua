@@ -315,16 +315,16 @@ function WPamA:PostToChatRGLAJp(var)
     end
 
   elseif var == 3 then
-  	txt = zo_strformat(rgla.F8, rgla.CZ, dailyBoss.H)
+    txt = zo_strformat(rgla.F8, rgla.CZ, dailyBoss.H)
 
   elseif var == 4 then
-  	txt = zo_strformat(rgla.F8, rgla.CP, dailyBoss.H)
+    txt = zo_strformat(rgla.F8, rgla.CP, dailyBoss.H)
 
   elseif var == 5 then
-  	txt = zo_strformat(rgla.F9, dailyBoss.H)
+    txt = zo_strformat(rgla.F9, dailyBoss.H)
 
   elseif var == 6 then
-    txt = zo_strformat(rgla.F10, rgla.CZ, dailyBoss.H)
+    txt = zo_strformat(rgla.F10, dailyBoss.H)
 
   elseif var == 7 then
     txt = zo_strformat(rgla.F11)
@@ -745,6 +745,9 @@ function WPamA:UpdRGLAInfo()
   local curPresent = false
   for j=1,6 do
     if j == v.WrBoss[0] then
+
+d(v.WrBoss[0])
+
       curPresent = true
       self:UpdWWBColor(v.WrBoss[j], self.ctrlRGLA[j], true)
     else
@@ -831,14 +834,36 @@ function WPamA:UpdPlayerLvl()
   self.CurChar.Lvl = GetUnitLevel("player")
 end
 
+--function WPamA:Parser(str)
+--  str = string.gsub(str,"へ",":")
+--  str = string.gsub(str,"と",":")
+--
+--  local searchResult1, searchResult2  = string.find(str,":")
+--  if searchResult1 == 1 then
+--    str = string.sub(str, searchResult2+1)
+--    searchResult1, searchResult2  = string.find(str,":")
+--  end
+--
+--  str = string.sub(str, searchResult2+1)
+--
+--  return str
+--end
+
 function WPamA:GetPledgeDoneStatus(activeStepText)
   local res = 0
   if activeStepText ~= nil then
     for _, v in pairs(self.i18n.DoneM) do
-      if string.find(activeStepText, v) then
-        res = 1
-        break
-      end
+--      if self.i18n.lang == "JP" then
+--        if self:Parser(activeStepText) == v then
+--          res = 1
+--          break
+--        end
+--      else
+        if string.find(activeStepText, v) then
+          res = 1
+          break
+        end
+--      end
     end
   end
   return res
@@ -952,8 +977,14 @@ function WPamA:FindUpdateQuests()
   v.Slv.Act = 0
   v.WrBoss[0] = nil
   for i = 1, MAX_JOURNAL_QUESTS do -- GetNumJournalQuests()
+
+msg("FindUpdateQuests")
+
     if IsValidQuestIndex(i) then
       local questName, _, _, _, activeStep, _, _, _, _, questType = GetJournalQuestInfo(i)
+
+msg(questName)
+
       --local questType = GetJournalQuestType(i)
       local isRepeat = GetJournalQuestRepeatType(i)
       if isRepeat == 2 then
