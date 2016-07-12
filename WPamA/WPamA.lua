@@ -23,8 +23,6 @@ function WPamA:UpdToday()
   self.Today.W = (self.Consts.BaseDayOfWeek + self.Today.Diff) % 7
 end
 
-
-
 function WPamA:ChekToday(DTS)
   if DTS ~= nil and DTS >= self.Today.TS and DTS < (self.Today.TS + self.Consts.SecInDay) then
     return true
@@ -293,7 +291,6 @@ function WPamA:PostToChatRGLAJp(var)
   local rgla = self.JP.RGLA
   local autoShare = self.savedVars.AutoShare
   local txt = ""
-
 
   if var == 1 then
     txt = zo_strformat(rgla.F1, dailyBoss.H)
@@ -602,6 +599,7 @@ function WPamA:UpdWWBColor(WrBoss, ctrl, isCurrent)
 end
 
 function WPamA:UpdWWBTxtColor(WrBoss, ctrl, isCurrent)
+
   local clr, txt = self.Colors.WWBStNone, ""
   if not self.savedVars.DontShowNone then
     txt = self.i18n.WWBStNone
@@ -741,13 +739,11 @@ function WPamA:UpdWindowInfo(isRedraw)
 end
 
 function WPamA:UpdRGLAInfo()
+
   local v = self.CurChar
   local curPresent = false
   for j=1,6 do
     if j == v.WrBoss[0] then
-
-d(v.WrBoss[0])
-
       curPresent = true
       self:UpdWWBColor(v.WrBoss[j], self.ctrlRGLA[j], true)
     else
@@ -834,36 +830,14 @@ function WPamA:UpdPlayerLvl()
   self.CurChar.Lvl = GetUnitLevel("player")
 end
 
---function WPamA:Parser(str)
---  str = string.gsub(str,"へ",":")
---  str = string.gsub(str,"と",":")
---
---  local searchResult1, searchResult2  = string.find(str,":")
---  if searchResult1 == 1 then
---    str = string.sub(str, searchResult2+1)
---    searchResult1, searchResult2  = string.find(str,":")
---  end
---
---  str = string.sub(str, searchResult2+1)
---
---  return str
---end
-
 function WPamA:GetPledgeDoneStatus(activeStepText)
   local res = 0
   if activeStepText ~= nil then
     for _, v in pairs(self.i18n.DoneM) do
---      if self.i18n.lang == "JP" then
---        if self:Parser(activeStepText) == v then
---          res = 1
---          break
---        end
---      else
-        if string.find(activeStepText, v) then
-          res = 1
-          break
-        end
---      end
+      if string.find(activeStepText, v) then
+        res = 1
+        break
+      end
     end
   end
   return res
@@ -915,6 +889,7 @@ function WPamA:UpdatePledge(questName, isStart, activeStepText)
 end
 
 function WPamA:FindDailyBossQuest(questName)
+
   local r = 0
   for n, v in pairs(self.i18n.DailyBossQ) do
     if v == questName then
@@ -962,6 +937,7 @@ function WPamA:CloseQuest(isDone, questName)
 end
 
 function WPamA:ChkAddBossDailyQuests(questName)
+
   local qi = self:FindDailyBossQuest(questName)
   if qi ~= 0 then
     self.CurChar.WrBoss[0] = qi
@@ -976,15 +952,10 @@ function WPamA:FindUpdateQuests()
   v.Slv.Num = 1
   v.Slv.Act = 0
   v.WrBoss[0] = nil
+
   for i = 1, MAX_JOURNAL_QUESTS do -- GetNumJournalQuests()
-
-msg("FindUpdateQuests")
-
     if IsValidQuestIndex(i) then
       local questName, _, _, _, activeStep, _, _, _, _, questType = GetJournalQuestInfo(i)
-
-msg(questName)
-
       --local questType = GetJournalQuestType(i)
       local isRepeat = GetJournalQuestRepeatType(i)
       if isRepeat == 2 then
@@ -1452,10 +1423,10 @@ function WPamA.OnChatMessage(eventCode, channelType, fromName, messageText, isCu
         end
         
         if WPamA.i18n.lang == "JP" then
-        	msg(zo_strformat(WPamA.i18n.SendInvTo, nam))
+          msg(zo_strformat(WPamA.i18n.SendInvTo, nam))
         else
-	        msg(WPamA.i18n.SendInvTo .. nam)
-	    end
+	  msg(WPamA.i18n.SendInvTo .. nam)
+	end
 	    
         AutoInvite:invitePlayer(nam)
       end

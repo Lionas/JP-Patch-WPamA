@@ -5,8 +5,8 @@
   VeteranM = "ベテラン",
 -- Marker (substring) in active quest step text for detect DONE stage
   DoneM = {
-    [1] = "戻る",
-    [2] = "話す",
+    [1] = "へ戻る",
+    [2] = "と話す",
   },
 -- Keybinding string
   KeyBindShowStr = "アドオンウィンドウの表示/非表示",
@@ -204,10 +204,10 @@ WPamA.i18n.Dungeons = {
 }
 WPamA.i18n.DailyBossQ = {
   [1] = "無知という異端", -- zanda, 蘇ったザンダデュノズ
-  [2] = "Snow and Steam", -- nyz, ニジャレフト
+  [2] = "雪と蒸気", -- nyz, ニジャレフト
   [3] = "悪い遊びの臭い", -- edu, 族長王エドゥ
   [4] = "学問的救出", -- ogre, マッド・ウルカズブル
-  [5] = "Meat for the Masses", -- poa, オールド・スナガラ
+  [5] = "大衆のための肉", -- poa, オールド・スナガラ
   [6] = "Nature's Bounty", -- cori, 悪鬼コリンサック
 }
 WPamA.i18n.DayOfWeek = {
