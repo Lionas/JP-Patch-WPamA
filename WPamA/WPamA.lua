@@ -287,7 +287,7 @@ end
 function WPamA:PostToChatRGLAJp(var)
 
   local wrBoss = self.CurChar.WrBoss[0]
-  local dailyBoss = self.Consts.DailyBoss[n]
+  local dailyBoss = self.Consts.DailyBoss[wrBoss]
   local rgla = self.JP.RGLA
   local autoShare = self.savedVars.AutoShare
   local txt = ""
