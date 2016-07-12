@@ -5,8 +5,8 @@
   VeteranM = "ベテラン",
 -- Marker (substring) in active quest step text for detect DONE stage
   DoneM = {
-    [1] = "Return to",
-    [2] = "Talk to",
+    [1] = "へ戻る",
+    [2] = "と話す",
   },
 -- Keybinding string
   KeyBindShowStr = "アドオンウィンドウの表示/非表示",
@@ -91,12 +91,12 @@ WPamA.i18n.ToolTip = {
   [15] = "極大魂石",
   [16] = "極大魂石 (空)",
 --
-  [21] = "Unfinished Dolmen\n - Zandadunoz the Reborn",
-  [22] = "Nyzchaleft Falls\n - Nyzchaleft the Dwarven Centurion",
-  [23] = "King-Chief's Throne\n - King-Chief Edu",
-  [24] = "The Mad Ogre's Altar\n - Mad Urkazbur",
-  [25] = "Poacher's Encampment\n - Old Snagara",
-  [26] = "The Accursed Nursery\n - Corintthac the Abomination",
+  [21] = "未完成のドルメン\n - Zandadunoz the Reborn",
+  [22] = "ニジャレフト・フォールズ\n - Nyzchaleft the Dwarven Centurion",
+  [23] = "族長王の玉座\n - King-Chief Edu",
+  [24] = "マッド・オーガの祭壇\n - Mad Urkazbur",
+  [25] = "密猟者の野営地\n - Old Snagara",
+  [26] = "呪われた託児所\n - Corintthac the Abomination",
   [27] = "アチーブメントのカウントダウン",
 }
 WPamA.i18n.RGLAMsg = {
@@ -203,12 +203,12 @@ WPamA.i18n.Dungeons = {
   },
 }
 WPamA.i18n.DailyBossQ = {
-  [1] = "Heresy of Ignorance", -- zanda
-  [2] = "Snow and Steam", -- nyz
-  [3] = "Reeking of Foul Play", -- edu
-  [4] = "Scholarly Salvage", -- ogre
-  [5] = "Meat for the Masses", -- poa
-  [6] = "Nature's Bounty", -- cori
+  [1] = "Heresy of Ignorance", -- zanda, 蘇ったザンダデュノズ
+  [2] = "Snow and Steam", -- nyz, ニジャレフト
+  [3] = "Reeking of Foul Play", -- edu, 族長王エドゥ
+  [4] = "Scholarly Salvage", -- ogre, マッド・ウルカズブル
+  [5] = "Meat for the Masses", -- poa, オールド・スナガラ
+  [6] = "Nature's Bounty", -- cori, 悪鬼コリンサック
 }
 WPamA.i18n.DayOfWeek = {
   [0] = "日",
@@ -260,45 +260,44 @@ for n, v in pairs(WPamA.i18n.Dungeons) do
 end
 
 WPamA.Consts.DailyBoss = {
-  [1] = {
-    H = "UD",--ZANDA
-    S = {
-      [1] = "+ud",
-      [2] = "+zanda",
-      [3] = "+zan",
-      [4] = "+dolmen",
+    [1] = {
+      H = "ザンダ",
+      S = {
+        [1] = "+zanda",
+        [2] = "+zan",
+        [3] = "+dolmen",
+      },
     },
-  },
-  [2] = {
-    H = "NYZ",
-    S = {
-      [1] = "+nyz",
+    [2] = {
+      H = "ニジャ",
+      S = {
+        [1] = "+nyz",
+      },
     },
-  },
-  [3] = {
-    H = "EDU",
-    S = {
-      [1] = "+edu",
+    [3] = {
+      H = "エドゥ",
+      S = {
+        [1] = "+edu",
+      },
     },
-  },
-  [4] = {
-    H = "MAD",--OGRE
-    S = {
-      [1] = "+mad",
-      [2] = "+ogre",
+    [4] = {
+      H = "マッド",
+      S = {
+        [1] = "+ogre",
+        [2] = "+mad",
+      },
     },
-  },
-  [5] = {
-    H = "POA",
-    S = {
-      [1] = "+poa",
+    [5] = {
+      H = "スナガラ",
+      S = {
+        [1] = "+poa",
+      },
     },
-  },
-  [6] = {
-    H = "NB",--CORI
-    S = {
-      [1] = "+nb",
-      [2] = "+cori",
+    [6] = {
+      H = "コリン",
+      S = {
+        [1] = "+cori",
+      },
     },
   },
 }
