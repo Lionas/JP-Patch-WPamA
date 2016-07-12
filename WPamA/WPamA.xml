@@ -1,0 +1,440 @@
+<GuiXml>
+  <Controls>
+    <TopLevelControl name="WPamA_Win" mouseEnabled="true" movable="true" clampedToScreen="true" hidden="true">
+      <Dimensions x="610" y="290"/>
+      <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20"/>
+ 
+      <OnMoveStop>WPamA.OnWindowMoveStop()</OnMoveStop>
+ 
+      <Controls>
+        <Backdrop name="$(parent)BG" inherits="ZO_DefaultBackdrop"/>
+        <Label name="$(parent)Title" color="D5B526" font="ZoFontWinH3" wrapMode="ELLIPSIS" verticalAlignment="CENTER" mouseEnabled="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="5"/>
+          <Dimensions x="425" y="34"/>
+        </Label>
+        <Texture name="$(parent)Line" mouseEnabled="true" textureFile="/esoui/art/miscellaneous/centerscreen_topdivider.dds">
+          <Dimensions x="660" y="3"/>
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="-25" offsetY="35"/>
+        </Texture>               
+                  
+        <Button name="$(parent)Close" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"/>
+          <Dimensions x="24" y="24"/>
+          <Textures normal="ESOUI/art/buttons/decline_up.dds" mouseOver="ESOUI/art/buttons/decline_over.dds"/>
+          <OnClicked>WPamA.HideUI()</OnClicked>
+        </Button>
+    
+        <Button name="$(parent)Options" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-30" offsetY="-5"/>
+          <Dimensions x="34" y="34"/>
+          <Textures normal="ESOUI/art/chatwindow/chat_options_up.dds" mouseOver="ESOUI/art/chatwindow/chat_options_over.dds"/>
+          <OnClicked>WPamA.ShowHideOptions()</OnClicked>
+        </Button>
+    
+        <Button name="$(parent)Swap" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)Options" relativePoint="TOPLEFT" offsetX="-10"/>
+          <Dimensions x="34" y="34"/>
+          <Textures normal="ESOUI/art/progression/morph_up.dds" mouseOver="ESOUI/art/progression/morph_over.dds"/>
+          <OnClicked>WPamA.SwapWindowMode()</OnClicked>
+        </Button>
+    
+        <Button name="$(parent)ChatTd" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)Swap" relativePoint="TOPLEFT" offsetX="-10"/>
+          <Dimensions x="30" y="30"/>
+          <Textures normal="ESOUI/art/buttons/edit_up.dds" mouseOver="ESOUI/art/buttons/edit_over.dds"/>
+          <OnClicked>WPamA.KeyPostChatTd()</OnClicked>
+        </Button>
+
+        <Control name="$(parent)Headers">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetY="40"/>
+          <Dimensions x="610" y="24"/>
+          <Controls>
+            <Label name="$(parent)Lvl" font="ZoFontChat" inheritAlpha="true" color="D5B526" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
+              <Dimensions x="40" y="24"/>
+            </Label>
+            <Label name="$(parent)Char" font="ZoFontChat" inheritAlpha="true" color="D5B526" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)Lvl" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="135" y="24"/>
+            </Label>
+            <Label name="$(parent)MSL" font="ZoFontChat" inheritAlpha="true" color="D5B526" verticalAlignment="CENTER" horizontalAlignment="LEFT" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)Char" relativePoint="TOPRIGHT" offsetX="28"/>
+              <Dimensions x="40" y="24"/>
+            </Label>
+            <Label name="$(parent)Silver" font="ZoFontChat" inheritAlpha="true" color="D5B526" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)MSL" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="165" y="24"/>
+            </Label>
+            <Label name="$(parent)Gold" font="ZoFontChat" inheritAlpha="true" color="D5B526" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)Silver" relativePoint="TOPRIGHT" offsetX="28"/>
+              <Dimensions x="165" y="24"/>
+            </Label>
+
+            <Label name="$(parent)B1" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)Char" relativePoint="TOPRIGHT" offsetX="12"/>
+              <Dimensions x="63" y="24"/>
+            </Label>
+            <Label name="$(parent)B2" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)B1" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="63" y="24"/>
+            </Label>
+            <Label name="$(parent)B3" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)B2" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="63" y="24"/>
+            </Label>
+            <Label name="$(parent)B4" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)B3" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="63" y="24"/>
+            </Label>
+            <Label name="$(parent)B5" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)B4" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="63" y="24"/>
+            </Label>
+            <Label name="$(parent)B6" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)B5" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="63" y="24"/>
+            </Label>
+            <Label name="$(parent)B7" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)B6" relativePoint="TOPRIGHT" offsetX="2"/>
+              <Dimensions x="24" y="24"/>
+            </Label>
+          </Controls>
+        </Control>
+
+      </Controls>
+    </TopLevelControl>
+
+    <Control name="WPamA_WinVRow" virtual="true" horizontalAlignment="LEFT" verticalAlignment="CENTER">
+      <Dimensions x="610" y="24"/>
+      <Controls>
+        <Backdrop name="$(parent)BG" hidden="true" tier="LOW"><Edge edgeSize="1"/></Backdrop>
+        <Label name="$(parent)Lvl" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
+          <Dimensions x="40" y="24"/>
+        </Label>
+        <Label name="$(parent)Char" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Lvl" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="145" y="24"/>
+        </Label>
+        <Texture name="$(parent)SilverAct" textureFile="esoui/art/buttons/accept_up.dds" tier="HIGH" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Char" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="24" y="24"/>
+        </Texture>               
+        <Label name="$(parent)MSL" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)SilverAct" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="30" y="24"/>
+        </Label>
+        <Label name="$(parent)Silver" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)MSL" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="165" y="24"/>
+        </Label>
+        <Texture name="$(parent)GoldAct" textureFile="esoui/art/buttons/accept_up.dds" tier="HIGH" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Silver" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="24" y="24"/>
+        </Texture>               
+        <Label name="$(parent)Gold" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)GoldAct" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="165" y="24"/>
+        </Label>
+
+        <Label name="$(parent)B1" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Char" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B2" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B1" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B3" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B2" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B4" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B3" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B5" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B4" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B6" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B5" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B7" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B6" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="24" y="24"/>
+        </Label>
+      </Controls>
+    </Control>
+
+    <TopLevelControl name="WPamA_Opt" mouseEnabled="true" clampedToScreen="true" hidden="true">
+      <Dimensions x="610" y="84"/>
+      <Anchor point="BOTTOMLEFT" relativeTo="WPamA_Win" relativePoint="TOPLEFT" offsetY="-18"/>
+      <Controls>
+        <Backdrop name="$(parent)BG" inherits="ZO_DefaultBackdrop"/>
+
+        <Button name="$(parent)Location" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)LocationTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)Location" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+        <Button name="$(parent)ENDung" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Location" relativePoint="BOTTOMLEFT" offsetY="6"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)ENDungTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)ENDung" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+        <Button name="$(parent)DontShowNone" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)ENDung" relativePoint="BOTTOMLEFT" offsetY="6"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)DontShowNoneTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)DontShowNone" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+        <Button name="$(parent)TitleToolTip" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)DontShowNone" relativePoint="BOTTOMLEFT" offsetY="6"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)TitleToolTipTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)TitleToolTip" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+        <Button name="$(parent)ResetChar" inherits="ZO_DefaultButton">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-8" offsetY="8"/>
+          <Dimensions x="120" y="30" />
+          <MouseButton enabled="true" />
+        </Button>
+      </Controls>
+    </TopLevelControl>
+
+    <TopLevelControl name="WPamA_Msg" mouseEnabled="true" clampedToScreen="true" hidden="true">
+      <Dimensions x="610" y="24"/>
+      <Anchor point="TOPLEFT" relativeTo="WPamA_Win" relativePoint="BOTTOMLEFT" offsetY="18"/>
+      <Controls>
+        <Backdrop name="$(parent)BG" inherits="ZO_DefaultBackdrop"/>
+
+        <Label name="$(parent)Txt" font="ZoFontChat" inheritAlpha="true" color="00B526" wrapMode="ELLIPSIS" verticalAlignment="CENTER" horizontalAlignment="LEFT">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="5"/>
+          <Dimensions x="580" y="24"/>
+        </Label>
+
+        <Label name="$(parent)B1" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="189"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B2" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B1" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B3" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B2" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B4" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B3" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B5" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B4" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B6" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B5" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B7" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER" hidden="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B6" relativePoint="TOPRIGHT" offsetX="2"/>
+          <Dimensions x="24" y="24"/>
+        </Label>
+
+      </Controls>
+    </TopLevelControl>
+
+    <TopLevelControl name="WPamA_RGLA_Opt" mouseEnabled="true" clampedToScreen="true" hidden="true">
+      <Dimensions x="345" y="80"/>
+      <Anchor point="BOTTOMLEFT" relativeTo="WPamA_RGLA" relativePoint="TOPLEFT" offsetY="-18"/>
+      <Controls>
+        <Backdrop name="$(parent)BG" inherits="ZO_DefaultBackdrop"/>
+
+        <Button name="$(parent)AutoShare" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)AutoShareTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)AutoShare" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+        <Button name="$(parent)QAlert" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)AutoShare" relativePoint="BOTTOMLEFT" offsetX="24" offsetY="6"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)QAlertTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)QAlert" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+        <Button name="$(parent)QChat" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)QAlert" relativePoint="BOTTOMLEFT" offsetY="6"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)QChatTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)QChat" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+        <Button name="$(parent)BossKilled" inherits="ZO_CheckButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)QChat" relativePoint="BOTTOMLEFT" offsetY="6"/>
+          <Dimensions x="16" y="16" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Label name="$(parent)BossKilledTxt" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="LEFT" relativeTo="$(parent)BossKilled" relativePoint="RIGHT" offsetX="5"/>
+        </Label>
+
+      </Controls>
+    </TopLevelControl>
+
+    <TopLevelControl name="WPamA_RGLA" mouseEnabled="true" movable="true" clampedToScreen="true" hidden="true">
+      <Dimensions x="345" y="60"/>
+      <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20"/>
+ 
+      <OnMoveStop>WPamA.OnWinRGLAMoveStop()</OnMoveStop>
+      <Controls>
+        <Backdrop name="$(parent)BG" inherits="ZO_DefaultBackdrop"/>
+        <Button name="$(parent)Close" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"/>
+          <Dimensions x="20" y="20"/>
+          <Textures normal="ESOUI/art/buttons/decline_up.dds" mouseOver="ESOUI/art/buttons/decline_over.dds"/>
+          <OnClicked>WPamA.HideRGLA()</OnClicked>
+        </Button>
+        <Button name="$(parent)Options" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+              <Anchor point="TOPRIGHT" relativeTo="$(parent)Close" relativePoint="TOPLEFT" offsetY="-4"/>
+              <Dimensions x="28" y="28" />
+          <Textures normal="ESOUI/art/chatwindow/chat_options_up.dds" mouseOver="ESOUI/art/chatwindow/chat_options_over.dds"/>
+          <OnClicked>WPamA.ShowHideRGLAOptions()</OnClicked>
+        </Button>
+
+        <Label name="$(parent)B1" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
+          <Dimensions x="63" y="24"/>
+        </Label>
+        <Label name="$(parent)B2" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B1" relativePoint="TOPRIGHT"/>
+          <Dimensions x="44" y="24"/>
+        </Label>
+        <Label name="$(parent)B3" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B2" relativePoint="TOPRIGHT"/>
+          <Dimensions x="44" y="24"/>
+        </Label>
+        <Label name="$(parent)B4" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B3" relativePoint="TOPRIGHT"/>
+          <Dimensions x="44" y="24"/>
+        </Label>
+        <Label name="$(parent)B5" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B4" relativePoint="TOPRIGHT"/>
+          <Dimensions x="44" y="24"/>
+        </Label>
+        <Label name="$(parent)B6" font="ZoFontChat" inheritAlpha="true" color="CFDCBD" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)B5" relativePoint="TOPRIGHT"/>
+          <Dimensions x="44" y="24"/>
+        </Label>
+
+        <Button name="$(parent)Start" inherits="ZO_DefaultButton">
+          <Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT" offsetX="-2" offsetY="-2"/>
+          <Dimensions x="86" y="30" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Button name="$(parent)Post" inherits="ZO_DefaultButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Start" relativePoint="TOPRIGHT"/>
+          <Dimensions x="86" y="30" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Button name="$(parent)Stop" inherits="ZO_DefaultButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Post" relativePoint="TOPRIGHT"/>
+          <Dimensions x="86" y="30" />
+          <MouseButton enabled="true" />
+        </Button>
+        <Button name="$(parent)Share" inherits="ZO_DefaultButton">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Stop" relativePoint="TOPRIGHT"/>
+          <Dimensions x="86" y="30" />
+          <MouseButton enabled="true" />
+        </Button>
+      </Controls>
+    </TopLevelControl>
+
+    <TopLevelControl name="WPamA_RGLA_Msg" mouseEnabled="true" clampedToScreen="true" hidden="true" tier="HIGH">
+      <Dimensions x="180" y="186"/>
+      <Anchor point="BOTTOMLEFT" relativeTo="WPamA_RGLAPost" relativePoint="BOTTOMRIGHT"/>
+      <Controls>
+        <Backdrop name="$(parent)BG" inherits="ZO_DefaultBackdrop"/>
+        <Button name="$(parent)Close" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"/>
+          <Dimensions x="20" y="20"/>
+          <Textures normal="ESOUI/art/buttons/decline_up.dds" mouseOver="ESOUI/art/buttons/decline_over.dds"/>
+          <OnClicked>WPamA_RGLA_Msg:SetHidden(true)</OnClicked>
+        </Button>
+        <Label name="$(parent)Txt1" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(1)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 1, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 1, false)</OnMouseExit>
+        </Label>
+        <Label name="$(parent)Txt2" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Txt1" relativePoint="BOTTOMLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(2)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 2, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 2, false)</OnMouseExit>
+        </Label>
+        <Label name="$(parent)Txt3" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Txt2" relativePoint="BOTTOMLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(3)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 3, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 3, false)</OnMouseExit>
+        </Label>
+        <Label name="$(parent)Txt4" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Txt3" relativePoint="BOTTOMLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(4)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 4, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 4, false)</OnMouseExit>
+        </Label>
+        <Label name="$(parent)Txt5" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Txt4" relativePoint="BOTTOMLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(5)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 5, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 5, false)</OnMouseExit>
+        </Label>
+        <Label name="$(parent)Txt6" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Txt5" relativePoint="BOTTOMLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(6)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 6, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 6, false)</OnMouseExit>
+        </Label>
+        <Label name="$(parent)Txt7" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Txt6" relativePoint="BOTTOMLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(7)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 7, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 7, false)</OnMouseExit>
+        </Label>
+        <Label name="$(parent)Txt8" mouseEnabled="true" font="ZoFontChat" inheritAlpha="true" verticalAlignment="CENTER" horizontalAlignment="LEFT" resizeToFitDescendents="true">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)Txt7" relativePoint="BOTTOMLEFT"/>
+          <OnMouseUp>WPamA.OnRGLAMsgClick(8)</OnMouseUp>
+          <OnMouseEnter>WPamA.RGLAMsgTxtColor(self, 8, true)</OnMouseEnter>
+          <OnMouseExit>WPamA.RGLAMsgTxtColor(self, 8, false)</OnMouseExit>
+        </Label>
+      </Controls>
+    </TopLevelControl>
+
+  </Controls>
+</GuiXml>
