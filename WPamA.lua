@@ -38,7 +38,7 @@ function WPamA:TimestampToStr(tmst)
   local dd, mm, yy, n, s = "", "", "", 0, ""
 
   -- For JP Client
-  if self.JP.lang == "JP" then
+  if self.i18n.lang == "JP" then
 
     for i=1,string.len(date) do
       s = string.sub(date, i , i)
@@ -78,7 +78,7 @@ function WPamA:TimestampToStr(tmst)
   if self.Consts.DateTimeFrmt == 1 then
 
     -- For JP Client
-    if self.JP.lang == "JP" then
+    if self.i18n.lang == "JP" then
       return mm .. "/" .. dd .. "(" .. self.JP.DayOfWeek[self.Today.W] .. ") " .. string.sub(time, 1 , 5)
     else
       return yy .. "-" .. mm .. "-" .. dd .. " " .. string.sub(time, 1 , 5)
@@ -285,35 +285,52 @@ end
 
 -- For JP Client
 function WPamA:PostToChatRGLAJp(var)
-  local n = self.CurChar.WrBoss[0]
-  local b = self.Consts.DailyBoss[n]
-  local e = self.JP.RGLA
-  local f = self.savedVars.AutoShare
+
+  local wrBoss = self.CurChar.WrBoss[0]
+  local dailyBoss = self.Consts.DailyBoss[n]
+  local rgla = self.JP.RGLA
+  local autoShare = self.savedVars.AutoShare
   local txt = ""
+
+
   if var == 1 then
-    txt = e.C1 .. b.H .. e.C2 .. b.S[1]
-    for i = 2, #b.S do
-      if i == #b.S then txt = txt .. e.D2 .. b.S[i] else  txt = txt .. e.D1 .. b.S[i] end
+    txt = zo_strformat(rgla.F1, dailyBoss.H)
+  	if autoShare then
+  	  txt = txt .. zo_strformat(rgla.F2, dailyBoss.S[1])
+  	else
+  	  txt = txt .. zo_strformat(rgla.F3, dailyBoss.S[1])
+  	end  	
+    for i = 2, #dailyBoss.S do
+      txt = txt .. zo_strformat(rgla.F4, dailyBoss.S[i])
     end
-    txt = txt .. e.C3
-    if f then txt = txt .. e.C4 end
-    txt = txt .. " (" .. self.Name .. ")."
+    txt = txt .. zo_strformat(rgla.F5, self.Name)
+    
   elseif var == 2 then
-    txt = e.C1 .. e.C0 .. b.S[1] .. e.C5
-    if f then txt = txt .. e.C6 end
+    if autoShare then
+      txt = zo_strformat(rgla.F6, dailyBoss.S[1])
+	else
+      txt = zo_strformat(rgla.F7, dailyBoss.S[1])
+    end
+
   elseif var == 3 then
-    txt = e.CZ .. b.H .. e.C7 
+  	txt = zo_strformat(rgla.F8, rgla.CZ, dailyBoss.H)
+
   elseif var == 4 then
-    txt = e.CP .. b.H .. e.C7 
+  	txt = zo_strformat(rgla.F8, rgla.CP, dailyBoss.H)
+
   elseif var == 5 then
-    txt = e.CP .. e.C8
+  	txt = zo_strformat(rgla.F9, dailyBoss.H)
+
   elseif var == 6 then
-    txt = e.CZ .. b.H .. e.C9
+    txt = zo_strformat(rgla.F10, rgla.CZ, dailyBoss.H)
+
   elseif var == 7 then
-    txt = e.CP .. e.Q1
+    txt = zo_strformat(rgla.F11)
+
   else
-    txt = e.A1 .. self.Name .. " v" .. self.Version .. e.A2
+    txt = zo_strformat(rgla.F12, self.Name, self.Version)
   end
+
   --msg(txt)
   CHAT_SYSTEM:StartTextEntry(txt) 
 end
@@ -451,7 +468,7 @@ function WPamA:PostToChatTd()
   self:UpdToday()
 
   -- For JP Client
-  if self.JP.lang == "JP" then
+  if self.i18n.lang == "JP" then
     txt = self:BuildInfoStringJP()
   else
     txt = self:BuildInfoStringEN()
@@ -1268,7 +1285,7 @@ function WPamA.OnRGLAMsgClick(var)
   if var >= 7 or WPamA.RGLA_Started or (var == 6 and WPamA:GetCurrentWrBoss() ~= 0 and WPamA:IsWrothgarLocation()) then 
 
     -- For JP Client
-    if WPamA.JP == nil then
+    if WPamA.i18n.lang == "JP" then
       WPamA:PostToChatRGLA(var)
     else
       WPamA:PostToChatRGLAJp(var)
@@ -1400,7 +1417,13 @@ function WPamA.OnChatMessage(eventCode, channelType, fromName, messageText, isCu
           nam = nam:gsub("%^.+", "")
           if nam == nil or nam == "" then return end
         end
-        msg(WPamA.i18n.SendInvTo .. nam)
+        
+        if WPamA.i18n.lang == "JP" then
+        	msg(zo_strformat(WPamA.i18n.SendInvTo, nam)
+        else
+	        msg(WPamA.i18n.SendInvTo .. nam)
+	    end
+	    
         AutoInvite:invitePlayer(nam)
       end
     end

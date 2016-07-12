@@ -1,4 +1,6 @@
 WPamA.i18n = {
+  lang = "EN",
+  
 -- Marker (substring) in quest name for detect Veteran Pledge
   VeteranM = "Veteran",
 -- Marker (substring) in active quest step text for detect DONE stage
