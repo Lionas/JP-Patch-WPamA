@@ -38,7 +38,7 @@ function WPamA:TimestampToStr(tmst)
   local dd, mm, yy, n, s = "", "", "", 0, ""
 
   -- For JP Client
-  if self.i18n.lang == "JP" then
+  if self.JP then
 
     for i=1,string.len(date) do
       s = string.sub(date, i , i)
@@ -78,7 +78,7 @@ function WPamA:TimestampToStr(tmst)
   if self.Consts.DateTimeFrmt == 1 then
 
     -- For JP Client
-    if self.i18n.lang == "JP" then
+    if self.JP then
       return mm .. "/" .. dd .. " " .. string.sub(time, 1 , 5)
     else
       return yy .. "-" .. mm .. "-" .. dd .. " " .. string.sub(time, 1 , 5)
@@ -312,7 +312,7 @@ function WPamA:PostToChatRGLAJp(var)
     end
 
   elseif var == 3 then
-    txt = zo_strformat(rgla.F8, rgla.CZ, dailyBoss.H)
+    txt = zo_strformat(rgla.F8, rgla.CG, dailyBoss.H)
 
   elseif var == 4 then
     txt = zo_strformat(rgla.F8, rgla.CP, dailyBoss.H)
@@ -467,7 +467,7 @@ function WPamA:PostToChatTd()
   self:UpdToday()
 
   -- For JP Client
-  if self.i18n.lang == "JP" then
+  if self.JP then
     txt = self:BuildInfoStringJP()
   else
     txt = self:BuildInfoStringEN()
@@ -1289,7 +1289,7 @@ function WPamA.OnRGLAMsgClick(var)
   if var >= 7 or WPamA.RGLA_Started or (var == 6 and WPamA:GetCurrentWrBoss() ~= 0 and WPamA:IsWrothgarLocation()) then 
 
     -- For JP Client
-    if WPamA.i18n.lang == "JP" then
+    if WPamA.JP then
       WPamA:PostToChatRGLAJp(var)
     else
       WPamA:PostToChatRGLA(var)
@@ -1422,7 +1422,7 @@ function WPamA.OnChatMessage(eventCode, channelType, fromName, messageText, isCu
           if nam == nil or nam == "" then return end
         end
         
-        if WPamA.i18n.lang == "JP" then
+        if WPamA.JP then
           msg(zo_strformat(WPamA.i18n.SendInvTo, nam))
         else
 	  msg(WPamA.i18n.SendInvTo .. nam)
