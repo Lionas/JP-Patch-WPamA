@@ -1,5 +1,7 @@
 # Japanese Translation Patch for WPamA 1.0.1 - Elder Scrolls Online Addon
 
+![](http://cdn-eso.mmoui.com/preview/pvw4600.png)
+
 ## アドオンサイト
 http://www.esoui.com/downloads/info1190-WPamAWhatPledgesatmyAlts.html
 
