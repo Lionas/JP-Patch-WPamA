@@ -1,76 +1,80 @@
 # Japanese Translation Patch for WPamA 1.0.1
 
+## アドオンサイト
+http://www.esoui.com/downloads/info1190-WPamAWhatPledgesatmyAlts.html
+
 ## 新機能
-- 新しいモード "その他" は、キャラクター毎の金/銀/銅の鍵、ロックピック、完全・空の魂石の情報です。
+- 新しいモード "その他" は、キャラクター毎の金/銀/銅の鍵、解錠、完全・空の魂石の情報です。
 
 ## 概要
 - このアドオンは誓いについてのカレンダーを表示し、今日の誓いをチャットメッセージに投稿します。
 - またキャラクター毎に取得した誓いや、6つのロスガーワールドボスの状態（完了・進行中・なし）を表示します。
-- ダンジョン名の代わりに場所の名前を表示することができます。
+- ダンジョン名の代わりに地名を表示することができます。
 - 非ベテランメンバーにはスケールされたダンジョンの最低レベルを表示します。
 - 誓いのステージが "...に戻る" や "〜と話す" になると、チェックマークが表示されます。
 - アドオンウィンドウのオンオフ、または、チャットへのメッセージの投稿は、キーバインディングまたはスラッシュコマンドを使用します。
 
 ## RGLA(Raid Group Leader Assistant：レイドグループリーダーアシスタント)
-**注意! この機能を利用するには AutoInvite アドオンが必要です!**
+**注意! この機能を利用するには AutoInvite（自動招待）アドオンが必要です!**
 
-ロスガーワールドボスデイリークエストを持っている場合、RGLAはグループを集めるために便利でしょう。
-"開始"ボタンをクリックすると
+- ロスガーワールドボスデイリークエストを持っている場合、RGLAはグループを集めるために便利でしょう。
+- "開始"ボタンをクリックすると、アドオンはAutoInviteの適切なクエストの設定を行い自動招待機能がONになります。
+- 手動で招待文字列を設定する必要はありません。また、AutoInviteの以前の設定は保持されます。
+- 新しいプレイヤーが加入した後はクエストが自動的にシェアされます。
+- チャットに予め定義されたメッセージ（メンバー募集中、他）を選んで、"投稿"ボタンをクリックすると投稿します。
+- "停止"ボタンをクリックすると、AutoInviteが停止し、設定が復元されます。
 
-When you click the "Start" button, the addon will set the appropriate quest settings in AutoInvite and turn it on.
-You don't need to manually set the invite string. Also saves previous configuration of AutoInvite.
-After a new player joins the group quest shared automatically.
-Click the "Post" button for select and post predefined (LFM and others) message to chat.
-When you click the "Stop" button AutoInvite will be stopped and its settings will be restored.
+## Multiple languages support
+- EN fully supported;
+- DE fully supported;
+- FR partially supported- need help with translation some texts;
+- RU fully supported for RuESO 9.3;
+- Other languages - if you dare to care with the translation. 
 
-Multiple languages support
-EN fully supported;
-DE fully supported;
-FR partially supported- need help with translation some texts;
-RU fully supported for RuESO 9.3;
-Other languages - if you dare to care with the translation. 
+## Special thanks
+- OlegS for alpha/beta-testing and debugging as well as co-authoring of the several features
+- Baertram for help with German translation
+- Svan, Nita for help with French translation
 
-Special thanks
-OlegS for alpha/beta-testing and debugging as well as co-authoring of the several features
-Baertram for help with German translation
-Svan, Nita for help with French translation
+## メモ
+インターフェースウィンドウの略語のMSL(最小スケールレベル)は、ダンジョンをスケールすることができる最小のレベルを意味します。
 
-Note
-An abbreviation MSL (Min Scaled Level) in interface window means "The minimum level which can be scaled dungeon".
+## "完了" と "無効(N/A)" の状態
+"完了"状態を決定するために、アドオンは誓いを取得した時間と誓いを閉じた時間を記録します。
+両方の時間が今日の7:00から明日の7:00までの間だった場合、"なし"が"完了"に変更されます。
+（もし時間が今日の7:00以前だった場合、昨日の7:00から今日の7:00までの間としてチェックします）
+両方の時間は変数に保存されます。
 
-About "Done" and "N/A" statuses
-To determine the status "Done" addon remembers time stamp the taking of a pledge and time stamp closing of a pledge. If both the time stamp is between today 7:00 to 7:00 tomorrow then the status "None" is changed to "Done" (if current time < 7:00 then checks between yesterday 7:00 to 7:00 today). Both the time stamp stored in the saved variables.
+いくつかのケースでは、"完了"が表示されないことがあります：
+1. ゲームがクラッシュした場合。変数がファイルに保存されません
+2. "キャラクターをリセット"オプションを利用した(/wpa resetchar)
+3. インタフェース言語を変更した
+4. 同じコンピュータで誓いを取得し、別のものでクローズした場合。複数のコンピュータでプレイしたした場合などで、例えばデスクトップPCとノートPCのようなケースです。
 
-There are several cases when the status "Done" may not be displayed:
-1. If you had a crashing game. Saved variables are not preserved in the file;
-2. You used the option "reset characters" (/wpa resetchar);
-3. You changed the interface language;
-4. If you took a pledge on the same computer and closed it to another. This is true if you play on multiple computers, for example you have a computer and a laptop.
+”無効"ステータスは以下のケースの場合は"なし"に置き換えられます:
+- 金の誓いと非ベテランキャラクター
+- 銀の誓いとレベル45未満キャラクター
 
-The status "N/A" replaces the status of "None" in the following cases:
-- Gold pledge and non veteran character;
-- Silver pledge and character with a level lower than 45.
+## List of Slash Command
+- /wpa - アドオンウィンドウの表示/非表示
+- /wpa on - アドオンウィンドウの表示（/wpa showのエイリアス）
+- /wpa off - アドオンウィンドウの非表示（/wap hideのエイリアス）
+- /wpa td - 今日の誓いに関するメッセージをチャットに投稿する（/wpa todayのエイリアス）
+- /wpa r - 現在のキャラクターのクエスト情報を更新する（/wpa refreshのエイリアス）
+- /wpa rch - 全キャラクターの情報を削除し、現在のものを読み込む（/wpa resetcharのエイリアス）
+- /wpa n - ダンジョン名の表示に切り替える（/wpa nameのエイリアス）
+- /wpa l - 地名の表示に切り替える（/wpa locationのエイリアス）
+- /wpa ch - キャラクターウィンドウに切り替える(/wpa charのエイリアス）
+- /wpa cl - カレンダーウィンドウに切り替える（/wpa calendarのエイリアス）
 
-List of Slash Command
-/wpa - Show/hide addon window
-/wpa on - Show addon window (alias /wpa show)
-/wpa off - Hide addon window (alias /wpa hide)
-/wpa td - Post to chat message about today's pledges(alias /wpa today)
-/wpa r - Reload quests information for curent character (alias /wpa refresh)
-/wpa rch - Delete information for all characters and load for curent (alias /wpa resetchar) 
-/wpa n - Switch to display dungeons names (alias /wpa name)
-/wpa l - Switch to display locations names (alias /wpa location)
-/wpa ch - Switch to character window (alias /wpa char)
-/wpa cl - Switch to calendar window (alias /wpa calendar)
+- /wpa dbgon - デバッグモードを有効にする
+- /wpa dbgoff - デバッグモードを無効にする
+- /wpa dbgclr - 保存している変数のデバッグバッファをクリアする
+- /wpa qdump - 全取得済みクエストをデバッグバッファにダンプする
 
-/wpa dbgon - Enable debug mode
-/wpa dbgoff - Disable debug mode
-/wpa dbgclr - Clear debug buffer in SavedVariables
-/wpa qdump - Dumping all taken quests to debug buffer
-
-/rgla - Show/hide RGLA window
-/rgla on - Show RGLA window (alias /rgla show)
-/rgla off - Hide RGLA window (alias /rgla hide)
-/rgla s - Start RGLA(alias /rgla start)
-/rgla t - Stop RGLA(alias /rgla stop)
-/rgla p - Post to chat "LFM .." message(alias /rgla post)
+- /rgla - RGLAウィンドウの表示/非表示
+- /rgla on - RGLAウィンドウの表示（/rgla showのエイリアス）
+- /rgla off - RGLAウィンドウの非表示(/rgla hideのエイリアス）
+- /rgla s - RGLAを開始する（/rgla startのエイリアス）
+- /rgla t - RGLAを停止する(/rgla stopのエイリアス）
+- /rgla p - メンバー募集中メッセージをチャットに投稿する（/rgla postのエイリアス）
